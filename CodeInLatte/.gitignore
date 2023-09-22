@@ -1,11 +1,13 @@
 /build/
+<<<<<<< HEAD
 /build/
+
 
 # eclipse
 *.classpath
 *.project
 /.settings
-
+.gitignore
 # Compiled class file
 *.class
 
