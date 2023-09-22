@@ -15,7 +15,7 @@ public class JDBConnection {
 	public JDBConnection() {
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");		 
+			Class.forName("com.mysql.cj.jdbc.Driver");	 
 			
 			String url = "jdbc:mysql://localhost:3306/joeun?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false";
 			String id = "joeun";
