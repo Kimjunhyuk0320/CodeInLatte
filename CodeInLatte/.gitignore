@@ -1,7 +1,7 @@
 /build/
 
 # 공통으로 바꾸지 않을 파일
-./src/main/java/cafe/dao/JDBConnection.java
+JDBConnection.java
 
 # eclipse
 *.classpath
