@@ -17,7 +17,7 @@ import cafe.dto.Product;
  * Servlet implementation class ImgServlet
  */
 @WebServlet("/img")  
-public class ImgServlet extends HttpServlet {
+public class ImgServlet extends HttpServlet {    
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -26,9 +26,9 @@ public class ImgServlet extends HttpServlet {
     public ImgServlet() {
         super();
         // TODO Auto-generated constructor stub
-    }
+    }  
   
-	/**
+	/**  
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
