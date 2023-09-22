@@ -15,9 +15,10 @@
 	
 	<%
 		AdminRepository adminDAO = new AdminRepository();
-		List<Admin> couponList = adminDAO.list(); 
+		List<Admin> couponList = adminDAO.list();		
 	%>
 
+	<h3 class="text-center">쿠폰 목록</h3>
 	<!-- 쿠폰 목록 -->
 	<div class="cart-box">
 			<table class="table table-striped table-hover table-bordered text-center align-middle">
@@ -33,18 +34,17 @@
 			</thead>
 			<tbody>
 
-				<%
-					int sum = 0;
-					for(int i = 0 ; i < cartList.size() ; i++) {
-						Product product = cartList.get(i);
-						int total = product.getUnitPrice() * product.getQuantity();
-						sum += total;
-				%>
+			<%
+				for(int i = 0 ; i < couponList.size() ; i++) {
+					Admin admin = couponList.get(i);
+			%>
 				<tr>
-					<td><%= admin.getName() %></td>			
-					<td><%= product.getUnitPrice() %></td>			
-					<td><%= product.getQuantity() %></td>			
-					<td><%= total %></td>			
+					<td><%= admin.getCouponNo() %></td>			
+					<td><%= admin.getCouponName()%></td>			
+					<td><%= admin.getCouponDate() %></td>			
+					<td><%= admin.getCouponImg() %></td>			
+					<td><%= admin.getUserNo() %></td>			
+					<td><%= admin.getCouponCheck() %></td>			
 					<td><a href="" class="btn btn-danger">삭제</a></td>			
 				</tr>
 				<%
@@ -53,17 +53,17 @@
 			</tbody>
 			<tfoot>
 				<%
-					if( cartList.isEmpty() ) {
+					if( couponList.isEmpty() ) {
 				%>
 				<tr>
-					<td colspan="5">추가된 상품이 없습니다.</td>	
+					<td colspan="6">발행된 쿠폰이 없습니다.</td>	
 				</tr>
 				<% } else { %>
 				<tr>
 					<td></td>
 					<td></td>
-					<td>총액</td>
-					<td><%= sum %></td>
+					<td>총 발행된 쿠폰 수</td>
+					<td><%= couponList.size() %></td>
 					<td></td>
 				</tr>
 				<%
@@ -71,8 +71,15 @@
 				%>
 			</tfoot>
 		</table>
-	</div>  
+	</div>
 	
+	<!-- 버튼 영역 -->
+	<div class="d-flex justify-content-between mt-5 mb-5">
+		<div class="item">
+			<a href="javascript: history.back()" class="btn btn-lg btn-success">이전</a>
+		</div>  
+	</div>
+		
 	<jsp:include page="/layout/footer.jsp" />
 	<jsp:include page="/layout/script.jsp" />
 </body>
