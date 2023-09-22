@@ -33,7 +33,7 @@
 						<!-- 컨텐츠 영역 -->
 						<div class="content">
 							<h3 class="text-center"><%= product.getProductName() %></h3>
-							<p><%= product.getProductCat() %></p>
+							<p><%= product.getProductCat() %></p>  
 							<p class="d-flex justify-content-between"></p>
 								<div>
 									<p class="text-end price">₩ <%= product.getProductPrice() %></p>						

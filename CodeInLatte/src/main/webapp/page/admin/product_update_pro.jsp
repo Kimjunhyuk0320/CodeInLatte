@@ -12,7 +12,7 @@
 	request.setCharacterEncoding("UTF-8");
 
 	// [NEW] - 파일 업로드 추가 
-	String path = "E:\\Server";
+	String path = "E:\\Server";  
 	
 	DiskFileUpload upload = new DiskFileUpload();  
 	

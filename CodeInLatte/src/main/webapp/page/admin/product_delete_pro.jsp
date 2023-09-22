@@ -10,7 +10,7 @@
 	// 파일 경로 조회
 	Product product = productDAO.select(productId);
 	
-	if( product == null ) {
+	if( product == null ) {  
 		response.sendRedirect("admin_products.jsp");
 		return;
 	}

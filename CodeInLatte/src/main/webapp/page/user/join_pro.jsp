@@ -1,13 +1,14 @@
 <!-- 
 	회원 가입 처리
  -->
-<%@page import="shop.dao.UserRepository"%>
-<%@page import="shop.dto.User"%>
+<%@page import="cafe.dto.User"%>
+<%@page import="cafe.dao.UserRepository"%>
+<%@page import="cafe.dto.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
-	User user = new User();
+	User user = new User();  
 	
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
