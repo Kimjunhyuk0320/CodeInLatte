@@ -8,13 +8,13 @@
 	String productId = request.getParameter("id");
 	
 	// 파일 경로 조회
-	Product product = productDAO.getProductById(productId);
+	Product product = productDAO.select(productId);
 	
 	if( product == null ) {
 		response.sendRedirect("admin_products.jsp");
 		return;
 	}
-	String filePath = product.getFile();
+	String filePath = product.getProductImg();
 	// 파일 삭제
 	File file = new File(filePath);
 		

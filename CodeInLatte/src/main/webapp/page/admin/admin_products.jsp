@@ -14,7 +14,9 @@
 	<jsp:include page="/layout/admin_header.jsp" />
 	
 		<%
-		List<Product> productList = productDAO.list(); 
+			String root = request.getContextPath();
+			out.print(root);
+			List<Product> productList = productDAO.list(); 
 		%>
 	<div class="container mb-5">
 		<div class="row gy-4">
@@ -26,7 +28,7 @@
 					<div class="card p-3">
 						<!-- 이미지 영역 -->
 						<div class="img-content">
-							<img src="img?id=<%= product.getProductNo() %>" class="w-100 p-2" />
+							<img src="<%= root %>/img?id=<%= product.getProductNo() %>" class="w-100 p-2" />
 						</div>
 						<!-- 컨텐츠 영역 -->
 						<div class="content">
@@ -39,7 +41,7 @@
 								<div>								
 									<a href="product_delete_pro.jsp?id=<%= product.getProductNo() %>"
 											   class="btn btn-danger mx-1">삭제</a>
-									<a href="./update.jsp?id=<%= product.getProductNo() %>"
+									<a href="product_update.jsp?id=<%= product.getProductNo() %>"
 											   class="btn btn-primary mx-1">수정</a>
 								</div>
 							</p>

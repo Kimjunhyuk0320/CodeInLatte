@@ -44,15 +44,6 @@
 
 			
 			<div class="d-flex justify-content-between mt-5 mb-5">
-				<a href="./products.jsp" class="btn btn-lg btn-secondary">목록</a>
-				<input type="submit" class="btn btn-lg btn-primary" value="등록" />
-			</div>
-		
-		</form> 
-	
-	</div>
-			
-			<div class="d-flex justify-content-between mt-5 mb-5">
 				<a href="admin_products.jsp" class="btn btn-lg btn-secondary">상품목록</a>
 				<input type="submit" class="btn btn-lg btn-primary" value="상품등록" />
 			</div>
@@ -60,7 +51,7 @@
 		</form> 
 	
 	</div>
-	
+			
 	
 	
 	
