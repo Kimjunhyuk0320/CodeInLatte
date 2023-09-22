@@ -12,7 +12,7 @@ public class UserRepository extends JDBConnection {
 	 * @param user
 	 * @return
 	 */
-	public int insert(User user) {
+	public int insert(User user) { 
 		int result = 0;
 		String sql = " INSERT INTO user (user_id, user_password, user_name, user_birth,  user_tel, user_address, user_regdate,) "
 				   + " VALUES ( ?, ?, ?, ?, ?, ?, ? ) " ;				
