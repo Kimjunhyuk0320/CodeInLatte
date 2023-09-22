@@ -1,6 +1,8 @@
 package cafe.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import cafe.dto.Admin;
 
 public class AdminRepository extends JDBConnection {
@@ -38,7 +40,7 @@ public class AdminRepository extends JDBConnection {
 	 * @param Order
 	 * @return
 	 */
-	public Admin select(String orderNo) {
+	public Admin orderSelect(String orderNo) {
 		Admin order = new Admin();
 		
 		String sql = " SELECT * FROM order WHERE order_no = ? ";
@@ -97,4 +99,67 @@ public class AdminRepository extends JDBConnection {
 		System.out.println("쿠폰 " + result + "개가 발행되었습니다.");
 		return result;
 	}
+	
+	/**
+	 * 쿠폰 목록 조회
+	 * @param CouponNo
+	 * @return
+	 */
+
+	public List<Admin> list() {
+		
+		ArrayList<Admin> couponList = new ArrayList<Admin>();
+		
+		String sql = " SELECT * FROM coupon ";
+		
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Admin coupon = new Admin();
+				coupon.setUserNo(rs.getInt("user_no"));
+				coupon.setCouponNo(rs.getInt("couponNo"));
+				coupon.setCouponName(rs.getString("couponName"));
+				coupon.setCouponDate(rs.getString("couponDate"));
+				coupon.setCouponImg(rs.getString("couponImg"));
+				coupon.setCouponCheck(rs.getInt("couponCheck"));
+				
+				couponList.add(coupon);
+			}
+		} catch (SQLException e) {
+			System.err.println("쿠폰 목록 조회 시, 에러 발생");
+			e.printStackTrace();
+		}
+		return couponList;
+	}
+	
+	
+//	public Admin couponSelect(String CouponNo) {
+//		Admin coupon = new Admin();
+//		
+//		String sql = " SELECT * FROM order WHERE order_no = ? ";
+//		
+//		try {
+//			psmt = con.prepareStatement(sql);
+//			psmt.setString(1, CouponNo);
+//			rs = psmt.executeQuery();
+//			
+//			while(rs.next()) {
+//				
+//				coupon.setUserNo(rs.getInt("user_no"));
+//				coupon.setCouponNo(rs.getInt("couponNo"));
+//				coupon.setCouponName(rs.getString("couponName"));
+//				coupon.setCouponDate(rs.getString("couponDate"));
+//				coupon.setCouponImg(rs.getString("couponImg"));
+//				coupon.setCouponCheck(rs.getInt("couponCheck"));
+//
+//			}
+//		} catch (SQLException e) {
+//			System.err.println("쿠폰 목록 조회시, 에러 발생");
+//			e.printStackTrace();
+//		}
+//		
+//		return coupon;
+//	}
 }

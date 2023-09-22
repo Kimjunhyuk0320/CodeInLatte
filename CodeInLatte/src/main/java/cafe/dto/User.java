@@ -14,7 +14,7 @@ public class User implements Serializable {
 	private String tel;
 	private String address;
 	private String Regdate;
-	private String stamp;
+	private int userStamp;
 	
 	public User() {
 		
@@ -86,18 +86,18 @@ public class User implements Serializable {
 		this.Regdate = Regdate;
 	}
 
-	public String getStamp() {
-		return stamp;
+	public int getuserStamp() {
+		return userStamp;
 	}
 
-	public void setStamp(String stamp) {
-		this.stamp = stamp;
+	public void setuserStamp(int userStamp) {
+		this.userStamp = userStamp;
 	}
 
 	@Override
 	public String toString() {
 		return "User [no=" + no + ", id=" + id + ", password=" + password + ", name=" + name + ", birth=" + birth
-				+ ", tel=" + tel + ", address=" + address + ", Regdate=" + Regdate + ", stamp=" + stamp + "]";
+				+ ", tel=" + tel + ", address=" + address + ", Regdate=" + Regdate + ", userStamp=" + userStamp + "]";
 	}
 
 	

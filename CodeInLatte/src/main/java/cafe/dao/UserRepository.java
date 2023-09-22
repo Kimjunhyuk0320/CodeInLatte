@@ -70,7 +70,8 @@ public class UserRepository extends JDBConnection {
 				user.setTel( rs.getString("user_Tel") );
 				user.setAddress( rs.getString("user_address") );
 				user.setRegdate( rs.getString("user_regdate"));
-				user.setStamp( rs.getString("user_stamp"));
+				//
+				user.setuserStamp( rs.getInt("user_stamp"));
 			}
 			
 		} catch (SQLException e) {
