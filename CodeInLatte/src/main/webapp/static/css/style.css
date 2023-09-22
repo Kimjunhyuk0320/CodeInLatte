@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+* {margin: 0; padding: 0; vertical-align: top;}
+
+a {text-decoration: none; color: inherit;}
+
+ul {list-style: none;}
+
 .container-fluid {
 	padding-right: calc(var(--bs-gutter-x) * 2.5)!important; 
 	padding-left: calc(var(--bs-gutter-x) * 2.5)!important;
@@ -7,3 +13,12 @@
 nav {
 	height: 150px;
 }
+
+.card {}
+.card .img-content { height: 200px;}
+.card .img-content img { width: 100%; height: 100%; object-fit: cover;}
+
+.card .content {max-height: 200px;}
+.card .content h3 {font-size: 20px; font-weight: bold;}
+.card .content p {font-size: 14px;}
+.card .content .price {font-size: 18px; font-weight: bold;}
