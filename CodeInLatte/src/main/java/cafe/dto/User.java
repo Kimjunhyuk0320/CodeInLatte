@@ -87,7 +87,7 @@ public class User implements Serializable {
 	}
 
 	public String getStamp() {
-		return stamp;
+		return user_Stamp;
 	}
 
 	public void setStamp(String user_Stamp) {
