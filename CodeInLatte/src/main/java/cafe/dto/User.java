@@ -6,6 +6,7 @@ public class User implements Serializable {
 	 
 	private static final long serialVersionUID = 1L;
 	
+<<<<<<< HEAD
 	private String user_No;
 	private String user_Id;
 	private String user_Password;
@@ -15,6 +16,17 @@ public class User implements Serializable {
 	private String user_Address;
 	private String user_Regdate;
 	private String user_Stamp;
+=======
+	private String no;
+	private String id;
+	private String password;
+	private String name;
+	private String birth;
+	private String tel;
+	private String address;
+	private String Regdate;
+	private int userStamp;
+>>>>>>> refs/remotes/origin/team4
 	
 	public User() {
 		
@@ -86,19 +98,34 @@ public class User implements Serializable {
 		this.user_Regdate = user_Regdate;
 	}
 
+<<<<<<< HEAD
 	public String getStamp() {
 		return user_Stamp;
+=======
+	public int getuserStamp() {
+		return userStamp;
+>>>>>>> refs/remotes/origin/team4
 	}
 
+<<<<<<< HEAD
 	public void setStamp(String user_Stamp) {
 		this.user_Stamp = user_Stamp;
+=======
+	public void setuserStamp(int userStamp) {
+		this.userStamp = userStamp;
+>>>>>>> refs/remotes/origin/team4
 	}
 
 	@Override
 	public String toString() {
+<<<<<<< HEAD
 		return "User [user_No=" + user_No + ", user_Id=" + user_Id + ", user_Password=" + user_Password + ", user_Name="
 				+ user_Name + ", user_Birth=" + user_Birth + ", user_Tel=" + user_Tel + ", user_Address=" + user_Address
 				+ ", user_Regdate=" + user_Regdate + ", user_Stamp=" + user_Stamp + "]";
+=======
+		return "User [no=" + no + ", id=" + id + ", password=" + password + ", name=" + name + ", birth=" + birth
+				+ ", tel=" + tel + ", address=" + address + ", Regdate=" + Regdate + ", userStamp=" + userStamp + "]";
+>>>>>>> refs/remotes/origin/team4
 	}
 
 

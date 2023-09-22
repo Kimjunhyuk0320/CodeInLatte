@@ -24,11 +24,9 @@
 //	int couponDueDate = coupon_date; // 시간을 365일 을 더해야함.
 	String couponDueDate = "2033-09-22";
 
-
 	stampCount = stampCount%10;
+
 	%>
-	
-	
 	<h3 class="text-center">쿠폰 화면</h3>
 	<h3 class="text-center">Coupon</h3>
 
@@ -84,7 +82,7 @@
 		<a href="javascript: history.back()" class="btn btn-lg btn-secondary mx-3">back</a>
 	</div>	
 	
-
 	<jsp:include page="/layout/footer.jsp" />
+	<jsp:include page="/layout/script.jsp" />
 </body>
 </html>

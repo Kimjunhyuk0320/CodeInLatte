@@ -3,8 +3,14 @@ package cafe.dto;
 import java.io.Serializable;
 
 public class Product implements Serializable {
+<<<<<<< HEAD
 	    
 	
+=======
+	
+	
+	private static final long serialVersionUID = 1L;
+>>>>>>> refs/remotes/origin/team4
 	
 	private int productNo;
 	private String productName;
