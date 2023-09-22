@@ -18,15 +18,14 @@
 //	int couponNo = Integer.parseInt(request.getParameter("couponNo"));
 	int couponNo = 1;
 //	int stampCount = Integer.parseInt(request.getParameter("userStamp"));
-	int stampCount = 20;
+	int stampCount = 15;
 	int couponCount = stampCount/10;
 	
 //	int couponDueDate = coupon_date; // 시간을 365일 을 더해야함.
 	String couponDueDate = "2033-09-22";
 
-		if(stampCount%10==0){
-			stampCount = stampCount%10;
-		}
+
+	stampCount = stampCount%10;
 	%>
 	
 	
