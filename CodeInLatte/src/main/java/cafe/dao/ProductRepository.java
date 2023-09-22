@@ -24,12 +24,12 @@ public class ProductRepository extends JDBConnection{
 			
 			while(rs.next()) {
 				Product product = new Product();
-				product.setProductNo(rs.getInt("productNo"));
-				product.setProductName(rs.getString("productName"));
-				product.setProductCat(rs.getString("productCat"));
-				product.setProductPrice(rs.getInt("productPrice"));
-				product.setProductCon(rs.getString("productCon"));
-				product.setProductImg(rs.getString("productImg"));
+				product.setProductNo(rs.getInt("product_no"));
+				product.setProductName(rs.getString("product_name"));
+				product.setProductCat(rs.getString("product_cat"));
+				product.setProductPrice(rs.getInt("product_price"));
+				product.setProductCon(rs.getString("product_con"));
+				product.setProductImg(rs.getString("product_img"));
 				
 				productList.add(product);
 			}
@@ -57,13 +57,13 @@ public class ProductRepository extends JDBConnection{
 			
 			while(rs.next()) {
 				
-				product.setProductNo(rs.getInt("productNo"));
-				product.setProductName(rs.getString("productName"));
-				product.setProductCat(rs.getString("productCat"));
-				product.setProductPrice(rs.getInt("productPrice"));
-				product.setProductCon(rs.getString("productCon"));
-				product.setProductImg(rs.getString("productImg"));
-				product.setProductRegdate(rs.getString("productRegDate"));
+				product.setProductNo(rs.getInt("product_no"));
+				product.setProductName(rs.getString("product_name"));
+				product.setProductCat(rs.getString("product_cat"));
+				product.setProductPrice(rs.getInt("product_price"));
+				product.setProductCon(rs.getString("product_con"));
+				product.setProductImg(rs.getString("product_img"));
+				product.setProductRegdate(rs.getString("product_regdate"));
 
 			}
 		} catch (SQLException e) {
