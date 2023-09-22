@@ -10,7 +10,7 @@
 <jsp:include page="/layout/link.jsp" />
 </head>
 <body>
-	<%
+	<%  
 		String productId = request.getParameter("id");
 		ProductRepository productDAO = new ProductRepository();
 		Product product = new Product();
