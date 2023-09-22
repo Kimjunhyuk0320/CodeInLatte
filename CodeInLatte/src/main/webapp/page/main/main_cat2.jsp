@@ -17,8 +17,10 @@
 %>
 <jsp:include page="/layout/header.jsp" />
 	<div class="container">
-		<div class="d-flex jutify-conent-center border-bottom">
-			a
+		<div class="d-flex justify-content-around border-bottom my-3 w-100 text-center">
+			<div class="py-3 w-100"><a href="./main_cat1.jsp" class="d-block">카페인</a></div>
+			<div class="py-3 w-100 bg-dark bg-gradient text-white"><a href="./main_cat2.jsp" class="d-block">디카페인</a></div>
+			<div class="py-3 w-100"><a href="./main_cat3.jsp" class="d-block">음료</a></div>
 		</div>
 		<div class="row gy-4">
 		<%
