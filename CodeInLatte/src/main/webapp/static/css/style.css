@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .container-fluid {
-	padding-right: calc(var(--bs-gutter-x) * 2.5)!important;
+	padding-right: calc(var(--bs-gutter-x) * 2.5)!important; 
 	padding-left: calc(var(--bs-gutter-x) * 2.5)!important;
 }
 nav {

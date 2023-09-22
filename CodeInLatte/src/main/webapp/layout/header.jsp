@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <!-- Font Awesome CDN  -->
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 <nav class="navbar navbar-expand-lg bg-white" style="height: 150px;">
