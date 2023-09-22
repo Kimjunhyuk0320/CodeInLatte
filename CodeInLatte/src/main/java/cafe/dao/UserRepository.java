@@ -6,7 +6,7 @@ import cafe.dto.Product;
 import cafe.dto.User;
 
 public class UserRepository extends JDBConnection {
-	
+	 
 	/**
 	 * 회원 등록
 	 * @param user
