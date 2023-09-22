@@ -5,8 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="/layout/link.jsp" />
 </head>
 <body>
-
+	<jsp:include page="/layout/admin_header.jsp" />
+	주문내역
 </body>
 </html>
