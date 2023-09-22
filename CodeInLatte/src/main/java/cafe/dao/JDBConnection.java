@@ -12,14 +12,14 @@ public class JDBConnection {
 	public PreparedStatement psmt;		
 	public ResultSet rs;				
 	
-	public JDBConnection() {
+	public JDBConnection() { 
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");	 
 			
-			String url = "jdbc:mysql://localhost:3306/joeun?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false";
-			String id = "joeun";
-			String pw = "123456";
+			String url = "jdbc:mysql://localhost:3306/kjh?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false";
+			String id = "kjh";
+			String pw = "123456789";
 			
 			con = DriverManager.getConnection(url, id, pw);
 			
