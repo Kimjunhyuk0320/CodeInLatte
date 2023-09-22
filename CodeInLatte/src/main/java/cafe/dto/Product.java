@@ -3,9 +3,8 @@ package cafe.dto;
 import java.io.Serializable;
 
 public class Product implements Serializable {
+	    
 	
-	
-	private static final long serialVersionUID = 1L;
 	
 	private int productNo;
 	private String productName;
@@ -14,7 +13,9 @@ public class Product implements Serializable {
 	private String productCon;
 	private String productImg;
 	private String productRegdate;
+	private int quantity;
 	
+
 	public Product() {
 		
 	}
@@ -75,6 +76,14 @@ public class Product implements Serializable {
 		this.productRegdate = productRegdate;
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
 	@Override
 	public String toString() {
 		return "Product [productNo=" + productNo + ", productName=" + productName + ", productCat=" + productCat

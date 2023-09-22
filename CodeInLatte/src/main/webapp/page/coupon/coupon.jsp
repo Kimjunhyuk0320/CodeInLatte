@@ -3,6 +3,8 @@
 <%@page import="java.util.List"%>
 <%@page import="cafe.dto.User"%>
 <%@page import="cafe.dto.Admin"%>
+<%@page import="cafe.dao.AdminRepository"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,14 +13,34 @@
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>
-	<jsp:include page="/layout/header.jsp" />
+	<jsp:include page="/layout/admin_header.jsp" />
+	
 	<%
-//	String root = request.getContextPath();
+	String root = request.getContextPath();
+	AdminRepository adminDAO = new AdminRepository();
+	Admin coupon = new Admin();
+	//List<Admin> couponList = adminDAO.list();	
+
+	// 사용자의 userNo를 가져와서 
+	String userNo = (String) session.getAttribute("userNo");
+	int coupon_No = coupon.getCouponNo();
+	int stampCount = 0;
+	
+	if( userNo == null ){
+		break;
+	}
+	
+	if(userNo==coupon_No){
+		stampCount = coupon.getCouponNo();	
+	}
+	/////////////////////머리가 안돌아간다아아아아
+	
+
 	
 //	int couponNo = Integer.parseInt(request.getParameter("couponNo"));
 	int couponNo = 1;
 //	int stampCount = Integer.parseInt(request.getParameter("userStamp"));
-	int stampCount = 15;
+
 	int couponCount = stampCount/10;
 	
 //	int couponDueDate = coupon_date; // 시간을 365일 을 더해야함.

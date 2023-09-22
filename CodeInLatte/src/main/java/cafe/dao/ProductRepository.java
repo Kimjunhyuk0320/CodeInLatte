@@ -24,12 +24,12 @@ public class ProductRepository extends JDBConnection{
 			
 			while(rs.next()) {
 				Product product = new Product();
-				product.setProductNo(rs.getInt("productNo"));
-				product.setProductName(rs.getString("productName"));
-				product.setProductCat(rs.getString("productCat"));
-				product.setProductPrice(rs.getInt("productPrice"));
-				product.setProductCon(rs.getString("productCon"));
-				product.setProductImg(rs.getString("productImg"));
+				product.setProductNo(rs.getInt("product_no"));
+				product.setProductName(rs.getString("product_name"));
+				product.setProductCat(rs.getString("product_cat"));
+				product.setProductPrice(rs.getInt("product_price"));
+				product.setProductCon(rs.getString("product_con"));
+				product.setProductImg(rs.getString("product_img"));
 				
 				productList.add(product);
 			}
@@ -57,13 +57,13 @@ public class ProductRepository extends JDBConnection{
 			
 			while(rs.next()) {
 				
-				product.setProductNo(rs.getInt("productNo"));
-				product.setProductName(rs.getString("productName"));
-				product.setProductCat(rs.getString("productCat"));
-				product.setProductPrice(rs.getInt("productPrice"));
-				product.setProductCon(rs.getString("productCon"));
-				product.setProductImg(rs.getString("productImg"));
-				product.setProductRegdate(rs.getString("productRegDate"));
+				product.setProductNo(rs.getInt("product_no"));
+				product.setProductName(rs.getString("product_name"));
+				product.setProductCat(rs.getString("product_cat"));
+				product.setProductPrice(rs.getInt("product_price"));
+				product.setProductCon(rs.getString("product_con"));
+				product.setProductImg(rs.getString("product_img"));
+				product.setProductRegdate(rs.getString("product_regdate"));
 
 			}
 		} catch (SQLException e) {
@@ -135,6 +135,7 @@ public class ProductRepository extends JDBConnection{
 			psmt.setString(no++, product.getProductImg());
 			psmt.setInt(no++, product.getProductNo());
 			
+			
 			result = psmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -165,6 +166,103 @@ public class ProductRepository extends JDBConnection{
 		}
 		
 		System.out.println("상품" + result + "개가 삭제되었습니다.");
+		
+		return result;
+	}
+	
+	public int cartAdd(String productNo, String userNo) {
+		int result = 0;
+		
+		String sql = " INSERT INTO cart(user_no, product_no, cart_cnt) "
+				   + " VALUES ( ?, ?, ? ) ";
+		
+		int no = 1;
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(no++, userNo);
+			psmt.setString(no++, productNo);
+			psmt.setInt(no++, 1);
+			
+			result = psmt.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("장바구니 등록 중, 에러 발생");
+			e.printStackTrace();
+		}
+		
+		System.out.println("장바구니에" + result + "개가 등록되었습니다.");
+		
+		return result;
+	}
+	
+	public int cartSame(String productNo, String userNo, int count) {
+		int result = 0;
+		
+		String sql = " UPDATE cart "
+				   + " SET cart_cnt = ? "
+				   + " WHERE product_no = ? "
+				   + " AND user_no = ? ";
+		
+		int no = 1;
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setInt(no++, count);
+			psmt.setString(no++, productNo);
+			psmt.setString(no++, userNo);
+			
+			result = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.err.println("장바구니 업데이트 중, 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public int cartDelete(String userNo) {
+		int result = 0;
+		
+		String sql = " DELETE FROM cart "
+				   + " WHERE user_no = ? ";
+		
+		int no = 1;
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(no++, userNo);
+			
+			result = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.err.println("장바구니 삭제 중, 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public int cartMenuDelete(String productNo, String userNo) {
+		int result = 0;
+		
+		String sql = " DELETE FROM cart "
+				+ " WHERE product_no = ? "
+				+ " AND user_no = ? ";
+		
+		int no = 1;
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(no++, productNo);
+			psmt.setString(no++, userNo);
+			
+			result = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.err.println("장바구니 메뉴 삭제 중, 에러 발생");
+			e.printStackTrace();
+		}
 		
 		return result;
 	}

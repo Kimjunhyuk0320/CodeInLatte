@@ -6,10 +6,12 @@ public class Admin implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	// 관리자
 	private int mangerNo;
 	private String mangerId;
-	private String manaerPw;
+	private String managerPw;
 	
+	// 쿠폰
 	private int userNo;
 	private int couponNo;
 	private String couponName;
@@ -17,6 +19,7 @@ public class Admin implements Serializable{
 	private String couponImg;
 	private int couponCheck;
 	
+	// 주문
 	private int orderNo;
 	private String userTel;
 	private String orderName;
@@ -45,11 +48,11 @@ public class Admin implements Serializable{
 	}
 
 	public String getManaerPw() {
-		return manaerPw;
+		return managerPw;
 	}
 
-	public void setManaerPw(String manaerPw) {
-		this.manaerPw = manaerPw;
+	public void setManaerPw(String managerPw) {
+		this.managerPw = managerPw;
 	}
 
 	public int getUserNo() {
@@ -150,7 +153,7 @@ public class Admin implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Admin [mangerNo=" + mangerNo + ", mangerId=" + mangerId + ", manaerPw=" + manaerPw + ", userNo="
+		return "Admin [mangerNo=" + mangerNo + ", mangerId=" + mangerId + ", managerPw=" + managerPw + ", userNo="
 				+ userNo + ", couponNo=" + couponNo + ", couponName=" + couponName + ", couponDate=" + couponDate
 				+ ", couponImg=" + couponImg + ", couponCheck=" + couponCheck + ", orderNo=" + orderNo + ", userTel="
 				+ userTel + ", orderName=" + orderName + ", orderCnt=" + orderCnt + ", orderPrice=" + orderPrice

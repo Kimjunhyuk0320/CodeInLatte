@@ -3,11 +3,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>login</title>
+	<title>사용자 로그인</title>
 	<jsp:include page="/layout/link.jsp" />
 </head>
-<body>
-	<jsp:include page="/layout/header.jsp" />   
+<body>   
 	<% 
 		String root = request.getContextPath();
 		String error = request.getParameter("error");
@@ -48,6 +47,8 @@
 	<jsp:include page="/layout/script.jsp" />
 </body>
 </html>
+
+
 
 
 

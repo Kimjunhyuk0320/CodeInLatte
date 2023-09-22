@@ -58,7 +58,6 @@ public class AdminRepository extends JDBConnection {
 				order.setOrderCnt(rs.getInt("order_cnt"));
 				order.setOrderPrice(rs.getInt("order_price"));
 				order.setOrderDate(rs.getString("order_date"));
-
 			}
 		} catch (SQLException e) {
 			System.err.println("상품 조회 시, 에러 발생");
@@ -135,31 +134,31 @@ public class AdminRepository extends JDBConnection {
 	}
 	
 	
-//	public Admin couponSelect(String CouponNo) {
-//		Admin coupon = new Admin();
-//		
-//		String sql = " SELECT * FROM order WHERE order_no = ? ";
-//		
-//		try {
-//			psmt = con.prepareStatement(sql);
-//			psmt.setString(1, CouponNo);
-//			rs = psmt.executeQuery();
-//			
-//			while(rs.next()) {
-//				
-//				coupon.setUserNo(rs.getInt("user_no"));
-//				coupon.setCouponNo(rs.getInt("couponNo"));
-//				coupon.setCouponName(rs.getString("couponName"));
-//				coupon.setCouponDate(rs.getString("couponDate"));
-//				coupon.setCouponImg(rs.getString("couponImg"));
-//				coupon.setCouponCheck(rs.getInt("couponCheck"));
-//
-//			}
-//		} catch (SQLException e) {
-//			System.err.println("쿠폰 목록 조회시, 에러 발생");
-//			e.printStackTrace();
-//		}
-//		
-//		return coupon;
-//	}
+	public Admin couponSelect(String userNo) {
+		Admin coupon = new Admin();
+		
+		String sql = " SELECT * FROM order WHERE order_no = ? ";
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, userNo);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				coupon.setUserNo(rs.getInt("user_no"));
+				coupon.setCouponNo(rs.getInt("couponNo"));
+				coupon.setCouponName(rs.getString("couponName"));
+				coupon.setCouponDate(rs.getString("couponDate"));
+				coupon.setCouponImg(rs.getString("couponImg"));
+				coupon.setCouponCheck(rs.getInt("couponCheck"));
+
+			}
+		} catch (SQLException e) {
+			System.err.println("쿠폰 목록 조회시, 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return coupon;
+	}
 }

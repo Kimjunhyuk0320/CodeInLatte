@@ -11,7 +11,7 @@
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>
-	<jsp:include page="/layout/header.jsp" />
+	<jsp:include page="/layout/admin_header.jsp" />
 	
 	<%
 		AdminRepository adminDAO = new AdminRepository();
