@@ -3,7 +3,7 @@
 <%@page import="cafe.dto.Product"%>
 <%@page import="cafe.dao.ProductRepository"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> 
+    pageEncoding="UTF-8"%>
 <%
 	// 상품ID 넘겨받기
 	String productNo = request.getParameter("id");
