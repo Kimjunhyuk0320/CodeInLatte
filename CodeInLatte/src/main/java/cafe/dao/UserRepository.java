@@ -80,6 +80,44 @@ public class UserRepository extends JDBConnection {
 		return user;
 	}
 	
+	/**
+	 * 수정 위한 사용자 조회
+	 * @param id
+	 * @return
+	 */
+	public User getUserById(String id) {
+		
+		String sql = " SELECT * "
+				   + " FROM user "
+				   + " WHERE id = ? ";
+		
+		User user = null;
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, id);
+			
+			rs = psmt.executeQuery();
+			
+			if( rs.next() ) {
+				user = new User();
+				user.setNo( rs.getString("user_no") );
+				user.setId( rs.getString("user_id") );
+				user.setPassword( rs.getString("user_password") );
+				user.setName( rs.getString("user_name") );
+				user.setBirth( rs.getString("user_birth") );
+				user.setTel( rs.getString("user_Tel") );
+				user.setAddress( rs.getString("user_address") );
+				user.setRegdate( rs.getString("user_regdate"));
+				user.setStamp( rs.getString("user_stamp"));
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("사용자 조회 시, 에러 발생");
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
 	
 	/**
 	 * 회원 수정
