@@ -133,6 +133,8 @@ public class ProductRepository extends JDBConnection{
 			psmt.setInt(no++, product.getProductPrice());
 			psmt.setString(no++, product.getProductCon());
 			psmt.setString(no++, product.getProductImg());
+			psmt.setInt(no++, product.getProductNo());
+			
 			
 			result = psmt.executeUpdate();
 			
@@ -144,6 +146,7 @@ public class ProductRepository extends JDBConnection{
 		System.out.println("상품" + result + "개가 수정되었습니다.");
 		return result;
 	}
+	
 	
 	public int delete(String productNo) {
 		int result = 0;
