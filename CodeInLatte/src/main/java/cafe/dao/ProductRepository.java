@@ -147,7 +147,6 @@ public class ProductRepository extends JDBConnection{
 		return result;
 	}
 	
-	
 	public int delete(String productNo) {
 		int result = 0;
 		
@@ -171,4 +170,129 @@ public class ProductRepository extends JDBConnection{
 		return result;
 	}
 	
+	public int cartAdd(String productNo, String userNo) {
+		int result = 0;
+		
+		String sql = " INSERT INTO cart(user_no, product_no, cart_cnt) "
+				   + " VALUES ( ?, ?, ? ) ";
+		
+		int no = 1;
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(no++, userNo);
+			psmt.setString(no++, productNo);
+			psmt.setInt(no++, 1);
+			
+			result = psmt.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("장바구니 등록 중, 에러 발생");
+			e.printStackTrace();
+		}
+		
+		System.out.println("장바구니에" + result + "개가 등록되었습니다.");
+		
+		return result;
+	}
+	
+	public int cartSame(String productNo, String userNo, int count) {
+		int result = 0;
+		
+		String sql = " UPDATE cart "
+				   + " SET cart_cnt = ? "
+				   + " WHERE product_no = ? "
+				   + " AND user_no = ? ";
+		
+		int no = 1;
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setInt(no++, count);
+			psmt.setString(no++, productNo);
+			psmt.setString(no++, userNo);
+			
+			result = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.err.println("장바구니 업데이트 중, 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public int cartDelete(String userNo) {
+		int result = 0;
+		
+		String sql = " DELETE FROM cart "
+				   + " WHERE user_no = ? ";
+		
+		int no = 1;
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(no++, userNo);
+			
+			result = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.err.println("장바구니 삭제 중, 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public int cartMenuDelete(String productNo, String userNo) {
+		int result = 0;
+		
+		String sql = " DELETE FROM cart "
+				+ " WHERE product_no = ? "
+				+ " AND user_no = ? ";
+		
+		int no = 1;
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(no++, productNo);
+			psmt.setString(no++, userNo);
+			
+			result = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.err.println("장바구니 메뉴 삭제 중, 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public List<Product> payMents(String userNo) {
+		ArrayList<Product> paymentsList = new ArrayList<Product>();
+		
+		String sql = " SELECT * FROM cart "
+				   + " WHERE user_no = ? ";
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, userNo);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				Product product = new Product();
+				
+				product.setCartNo(rs.getInt("cart_no"));
+				product.setUserNo(rs.getInt("user_no"));
+				product.setProductNo(rs.getInt("product_no"));
+				product.setCartCnt(rs.getInt("cart_cnt"));
+				
+				paymentsList.add(product);
+			}
+		} catch (SQLException e) {
+			System.err.println("결제 진행 시, 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return paymentsList;
+	}
 }

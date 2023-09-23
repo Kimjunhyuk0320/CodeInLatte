@@ -21,7 +21,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-<%-- 			<img alt="이미지" src="img?file=<%= product.getFile()  %>" style="width: 100%;"> --%>
 				<!-- [NEW] 썸네일 이미지 요청하기 추가 -->
 				<img alt="이미지" src="<%= root %>/img?id=<%= product.getProductNo()  %>" class="w-100 p-2">
 			</div>

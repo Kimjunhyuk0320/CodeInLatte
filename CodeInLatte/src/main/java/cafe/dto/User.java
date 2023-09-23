@@ -6,101 +6,97 @@ public class User implements Serializable {
 	 
 	private static final long serialVersionUID = 1L;
 	
-	private String no;
-	private String id;
-	private String password;
-	private String name;
-	private String birth;
-	private String tel;
-	private String address;
-	private String Regdate;
-	private String stamp;
+	private int userNo;
+	private String userId;
+	private String userPW;
+	private String userName;
+	private String userBirth;
+	private String userAddress;
+	private String userTel;
+	private String userRegdate;
+	private int userStamp;
 	
 	public User() {
 		
 	}
-	
-	public String getNo() {
-		return no;
+
+	public int getUserNo() {
+		return userNo;
 	}
 
-	public void setNo(String no) {
-		this.no = no;
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
-	public String getId() {
-		return id;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getUserPW() {
+		return userPW;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserPW(String userPW) {
+		this.userPW = userPW;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-
-	public String getBirth() {
-		return birth;
+	public String getUserBirth() {
+		return userBirth;
 	}
 
-	public void setBirth(String birth) {
-		this.birth = birth;
+	public void setUserBirth(String userBirth) {
+		this.userBirth = userBirth;
 	}
 
-
-	public String getTel() {
-		return tel;
+	public String getUserAddress() {
+		return userAddress;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getUserTel() {
+		return userTel;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setUserTel(String userTel) {
+		this.userTel = userTel;
 	}
 
-	public String getRegdate() {
-		return Regdate;
+	public String getUserRegdate() {
+		return userRegdate;
 	}
 
-	public void setRegdate(String Regdate) {
-		this.Regdate = Regdate;
+	public void setUserRegdate(String userRegdate) {
+		this.userRegdate = userRegdate;
 	}
 
-	public String getStamp() {
-		return stamp;
+	public int getUserStamp() {
+		return userStamp;
 	}
 
-	public void setStamp(String stamp) {
-		this.stamp = stamp;
+	public void setUserStamp(int userStamp) {
+		this.userStamp = userStamp;
 	}
 
 	@Override
 	public String toString() {
-		return "User [no=" + no + ", id=" + id + ", password=" + password + ", name=" + name + ", birth=" + birth
-				+ ", tel=" + tel + ", address=" + address + ", Regdate=" + Regdate + ", stamp=" + stamp + "]";
+		return "User [userNo=" + userNo + ", userId=" + userId + ", userPW=" + userPW + ", userName=" + userName
+				+ ", userBirth=" + userBirth + ", userAddress=" + userAddress + ", userTel=" + userTel
+				+ ", userRegdate=" + userRegdate + ", userStamp=" + userStamp + "]";
 	}
-
-	
-	
 
 }

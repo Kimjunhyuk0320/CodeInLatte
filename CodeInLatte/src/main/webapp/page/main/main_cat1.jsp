@@ -38,7 +38,7 @@
 					<!-- 컨텐츠 영역 -->
 					<div class="content">
 						<h3><%= product.getProductName() %></h3>
-						<p><%= product.getProductCon() %></p>
+						<p><%= product.getProductCat() %></p>
 						<div class="d-flex justify-content-between w-100">
 							<p class="price"><%= product.getProductPrice() %></p>
 							<a href="./product.jsp?id=<%= product.getProductNo() %>" class="btn btn-dark">상세정보</a>

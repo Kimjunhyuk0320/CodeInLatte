@@ -25,13 +25,13 @@
       	<div class="collapse navbar-collapse d-flex justify-content-end px-3">
 	      <ul class="navbar-nav">
 	        <li class="nav-item px-2">
-	          <a class="nav-link active" aria-current="page" href="#">로그인</a>
+	          <a class="nav-link active" aria-current="page" href="<%= root %>/page/start/login.jsp">로그인</a>
 	        </li>
 	        <li class="nav-item px-2">
-	          <a class="nav-link" href="#">회원가입</a>
+	          <a class="nav-link" href="<%= root %>/page/user/join.jsp">회원가입</a>
 	        </li>
 	        <li class="nav-item px-2">
-	          <a class="nav-link" href="#">Coupon(0)</a>
+	          <a class="nav-link" href="<%= root %>/page/coupon/couporn.jsp">Coupon(0)</a>
 	        </li>
 	        <li class="nav-item px-2">
 	          <a class="nav-link" href="cart.jsp"><i class="fa fa-shopping-cart fs-5"></i>(<%= cartCount %>)</a>
