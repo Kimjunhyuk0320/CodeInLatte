@@ -20,9 +20,9 @@ public class AdminRepository extends JDBConnection {
 		int no = 1;
 		try {
 			psmt = con.prepareStatement(sql);
-			psmt.setInt(no++, admin.getMangerNo());
-			psmt.setString(no++, admin.getMangerId());
-			psmt.setString(no++, admin.getManaerPw());
+			psmt.setInt(no++, admin.getManagerNo());
+			psmt.setString(no++, admin.getManagerId());
+			psmt.setString(no++, admin.getManagerPW());
 			
 			result = psmt.executeUpdate();
 			
@@ -32,6 +32,41 @@ public class AdminRepository extends JDBConnection {
 		}
 		System.out.println("관리자 데이터 " + result + "개가 등록되었습니다.");
 		return result;
+	}
+	
+	/**
+	 * 관리자 로그인
+	 * @param id
+	 * @param PW
+	 * @return
+	 */
+	public Admin login(String id, String pw) {
+		
+		String sql = " SELECT * "
+				   + " FROM admin "
+				   + " WHERE user_id = ? "
+				   + "   AND user_pw = ? ";
+		
+		Admin admin = null;
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
+			
+			rs = psmt.executeQuery();
+			
+			if( rs.next() ) { 
+				admin = new Admin();
+				admin.setManagerNo(rs.getInt("manager_no"));
+				admin.setManagerId(rs.getString("manager_id"));
+				admin.setManagerPW(rs.getString("manager_pw"));
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("관리자 조회 시, 에러 발생");
+			e.printStackTrace();
+		}
+		return admin;
 	}
 	
 
