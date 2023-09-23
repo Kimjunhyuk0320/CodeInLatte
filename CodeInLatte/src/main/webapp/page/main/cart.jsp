@@ -6,13 +6,14 @@
     
 <% 	
 	String root = request.getContextPath();
-
+	String userid = (String) session.getAttribute("userid");
 	// 장바구니 목록을 세션에서 가져오기
 	List<Product> cartList = (List<Product>) session.getAttribute("cartList");
 	if(cartList == null) cartList = new ArrayList<Product>();
 	
-	// 세션ID : 고유한 식별 정보 긴 문자열로 표현
-// 	String cartId = session.getId();
+	// 세션으로 유저 넘버 받아오기
+	// 현재 임시로 값 받기
+	String userNo = "1";
 	
 	
 %>
@@ -20,7 +21,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CodeInLatte</title>
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>
@@ -51,7 +52,7 @@
 				<td><%= product.getProductPrice() %></td>
 				<td><%= product.getQuantity() %></td>
 				<td><%= total %></td>
-				<td><a href="removeCart.jsp?id=<%= product.getProductNo() %>" class="btn btn-danger">삭제</a></td>
+				<td><a href="cart_remove.jsp?removeid=<%= product.getProductNo() %>" class="btn btn-danger">삭제</a></td>
 			</tr>
 			<%
 				}
@@ -82,8 +83,9 @@
 	
 	<!-- 버튼 영역 -->
 		<div class="d-flex justify-content-between align-items-center p-3">
-			<a href="removeCart.jsp?cartId=" class="btn btn-lg btn-danger">삭제하기</a>
-			<a href="ship.jsp?cartId=" class="btn btn-lg btn-primary">주문하기</a>
+			<a href="cart_remove.jsp?removeall=<%= userid %>" class="btn btn-lg btn-danger">삭제하기</a>
+			<a href="./main_cat1.jsp" class="btn btn-lg btn-success">상품페이지</a>
+			<a href="payment.jsp?userNo=<%= userNo %>" class="btn btn-lg btn-primary">주문하기</a>
 		</div>
 	</div>
 <jsp:include page="/layout/footer.jsp" />
