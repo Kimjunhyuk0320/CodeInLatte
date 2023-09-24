@@ -10,7 +10,9 @@
 	
 	String root = request.getContextPath();
 	
-// 	String loginId = (String) session.getAttribute("loginId");
+	String loginId = (String) session.getAttribute("loginId");
+	
+	
 %>
  
 <!-- Font Awesome CDN  -->
@@ -24,21 +26,46 @@
     <a class="navbar-brand px-3" href="#"><img src="" alt="로고" /></a>
       	<div class="collapse navbar-collapse d-flex justify-content-end px-3">
 	      <ul class="navbar-nav">
+	      <%
+	      	if(loginId == null) {
+	      %>
 	        <li class="nav-item px-2">
 	          <a class="nav-link active" aria-current="page" href="<%= root %>/page/start/login.jsp">로그인</a>
+<%-- 	          <a class="nav-link active" aria-current="page" href="<%= root %>/page/start/login.jsp">로그아웃</a> --%>
 	        </li>
 	        <li class="nav-item px-2">
 	          <a class="nav-link" href="<%= root %>/page/user/join.jsp">회원가입</a>
 	        </li>
+          <%
+	      	} else {
+          %>
+          	<li class="nav-item px-2">
+	          <a class="nav-link active" aria-current="page" href="<%= root %>/page/start/logout.jsp">로그아웃</a>
+<%-- 	          <a class="nav-link active" aria-current="page" href="<%= root %>/page/start/login.jsp">로그아웃</a> --%>
+	        </li>
+	        <li class="nav-item px-2">
+	          <a class="nav-link" href="<%= root %>/page/main/main_cat1.jsp">주문하러가기</a>
+	        </li>
+          <%
+	      	}
+          %>
 	        <li class="nav-item px-2">
 	          <a class="nav-link" href="<%= root %>/page/coupon/couporn.jsp">Coupon(0)</a>
 	        </li>
 	        <li class="nav-item px-2">
 	          <a class="nav-link" href="cart.jsp"><i class="fa fa-shopping-cart fs-5"></i>(<%= cartCount %>)</a>
 	        </li>
+	        <%
+	        if(loginId == null) {
+	        	
+	        } else {
+	        %>
 	        <li class="nav-item">
-	          <a class="nav-link" href="#"><i class="fa fa-user-o fs-5"></i></a>
+	          <a class="nav-link" href="<%= root %>/page/user/user_update.jsp"><i class="fa fa-user-o fs-5"></i></a>
 	        </li>
+	        <%
+	        }
+	        %>
 	      </ul>
       	</div>
     </div>
