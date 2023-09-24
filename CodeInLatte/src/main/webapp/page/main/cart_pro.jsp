@@ -1,3 +1,4 @@
+<%@page import="cafe.dao.UserRepository"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="cafe.dto.Product"%>
@@ -6,12 +7,17 @@
     pageEncoding="UTF-8"%>
 <%
 	
+
 		// 상품ID 넘겨받기
-		String productNo = request.getParameter("id");
+		String productNo = request.getParameter("productNo");
 		out.print(productNo);
 		
 		// 세션에서 유저 정보 받아오기
-		String userNo = "1"; 
+// 		String userNo = "1"; 
+		String userId = (String) session.getAttribute("loginId");
+		UserRepository userDAO = new UserRepository();
+		int uNo = userDAO.getUserById(userId).getUserNo();
+		String userNo = String.valueOf(uNo);
 		
 		// 존재하는 상품인지?
 		ProductRepository productDAO = new ProductRepository();
@@ -60,6 +66,6 @@
 		}
 		
 		// 상품 상세 페이지로 이동
-		response.sendRedirect("product.jsp?id=" + productNo);
+		response.sendRedirect("product.jsp?productNo=" + productNo);
 			
 %>

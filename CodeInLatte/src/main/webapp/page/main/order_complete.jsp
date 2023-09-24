@@ -12,6 +12,9 @@
 <body>
 <jsp:include page="/layout/header.jsp" />
 <%
+	// 결제하기에선 넘어 온 유저번호
+	String userNo = request.getParameter("userno");
+
 	String userTel = request.getParameter("usertel");
 	String[] productNames = request.getParameterValues("productName");
 	String[] productPrice = request.getParameterValues("productPrice");
@@ -20,8 +23,6 @@
 	AdminRepository adminDAO = new AdminRepository();
 	ProductRepository productDAO = new ProductRepository();
 	
-	//세션으로 넘어 온 회원 번호
-	String userNo = "1";
 
 	out.println("사용자 전화번호 : " + userTel);
 	if (productNames != null) {

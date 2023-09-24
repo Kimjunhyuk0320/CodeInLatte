@@ -34,6 +34,7 @@
 			User user = userList.get(i);
 	%>
 		<p><%= user.getUserNo() %></p>
+		<input type="hidden" name="userno" value="<%= user.getUserNo() %>" />
 		<p><%= user.getUserName() %></p>
 		<p><%= user.getUserTel() %></p>
 		<input type="hidden" name="usertel" value="<%= user.getUserTel() %>" />

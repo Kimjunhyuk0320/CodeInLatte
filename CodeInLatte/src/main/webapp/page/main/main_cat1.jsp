@@ -41,7 +41,7 @@
 						<p><%= product.getProductCat() %></p>
 						<div class="d-flex justify-content-between w-100">
 							<p class="price"><%= product.getProductPrice() %></p>
-							<a href="./product.jsp?id=<%= product.getProductNo() %>" class="btn btn-dark">상세정보</a>
+							<a href="./product.jsp?productNo=<%= product.getProductNo() %>" class="btn btn-dark">상세정보</a>
 						</div>					
 					</div>
 				</div>

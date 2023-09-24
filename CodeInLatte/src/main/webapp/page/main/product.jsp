@@ -15,8 +15,11 @@
 	
 	<%
 		String root = request.getContextPath();
-		String productNo = request.getParameter("id");
+		String userId = (String) session.getAttribute("loginId");
+		String productNo = request.getParameter("productNo");
 		Product product = productDAO.select(productNo);
+		
+		out.print(userId);
 	%>
 	<div class="container">
 		<div class="row">
@@ -47,7 +50,7 @@
 
 				<div class="mt-4">
 					<form name="addForm" action="./cart_pro.jsp" method="post">
-						<input type="hidden" name="id" value="<%= product.getProductNo() %>" />
+						<input type="hidden" name="productNo" value="<%= product.getProductNo() %>" />
 						<div class="btn-box d-flex justify-content-end ">
 <!--  							[NEW] 장바구니 버튼 추가 --> 
 							<a href="javascript:;" class="btn btn-lg btn-success mx-3" onclick="addToCart()">ADD TO CART</a>
