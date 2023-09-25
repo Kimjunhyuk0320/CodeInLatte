@@ -31,7 +31,7 @@
 			<div class="col-md-6 col-xl-4 col-xxl-3">
 				<div class="card p-3">
 					<!-- 이미지 영역 -->
-					<div class="img-content">
+					<div class="img-content ">
 						<!-- [New] 이미지 썸네일 추가 -->
 						<img alt="이미지" src="<%= root %>/img?id=<%= product.getProductNo() %>" class="w-100 p-2">					
 					</div>

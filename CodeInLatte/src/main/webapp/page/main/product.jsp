@@ -19,6 +19,10 @@
 		String productNo = request.getParameter("productNo");
 		Product product = productDAO.select(productNo);
 		
+		if(userId == null) {
+			userId = "Guest";
+		}
+		
 		out.print(userId);
 	%>
 	<div class="container">
