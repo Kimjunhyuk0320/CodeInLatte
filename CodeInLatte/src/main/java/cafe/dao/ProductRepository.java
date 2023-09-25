@@ -228,7 +228,7 @@ public class ProductRepository extends JDBConnection{
 				   + " WHERE user_no = ? ";
 		
 		int no = 1;
-		
+		 
 		try {
 			psmt = con.prepareStatement(sql);
 			psmt.setString(no++, userNo);

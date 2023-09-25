@@ -93,7 +93,7 @@ public class UserRepository extends JDBConnection {
 		
 		String sql = " SELECT * "
 				   + " FROM user "
-				   + " WHERE id = ? ";
+				   + " WHERE user_id = ? ";
 		
 		User user = null;
 		try {
@@ -213,7 +213,39 @@ public class UserRepository extends JDBConnection {
 		
 		return cartuser;
 	}
+	
 
+	/**
+	 * 스탬프 추가
+	 * @param userNo
+	 * @param stamp
+	 * @return
+	 */
+	public int stampUp(String userNo, int stamp) {
+		int result = 0;
+		System.out.println(stamp);	
+		System.out.println(userNo);	
+		String sql = " UPDATE user SET "
+				+ " user_stamp = ? "
+				+ " WHERE user_no = ? ";
+		int no = 1;
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setInt(no++, stamp);
+			psmt.setString(no++, userNo);
+			
+			result = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.err.println("스탬프 추가 중, 에러 발생!");
+			e.printStackTrace();
+		}
+		System.out.println("회원정보 " + result + "명의 스탬프가 추가되었습니다.");
+		return result;
+		
+
+	}
+	
 }
 
 

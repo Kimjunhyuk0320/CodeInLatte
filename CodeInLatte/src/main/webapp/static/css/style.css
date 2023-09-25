@@ -22,3 +22,20 @@ nav {
 .card .content h3 {font-size: 20px; font-weight: bold;}
 .card .content p {font-size: 14px;}
 .card .content .price {font-size: 18px; font-weight: bold;}
+
+video {
+	position : fixed;
+	top : 0; 
+	left : 0;
+	min-width : 100%;
+	min-height : 100%;
+	width : auto;
+	height : auto;
+	z-index : -1;
+}
+.product_box {width: 100%;; padding: 30px 0; }
+.cart_box {width: 100%}
+.img_box {width: 100%;}
+.name_price_box {width: 100%;}
+.cnt_box {width: 100%;}
+.img_box>img {height: 200px; width: 200px; object-fit: cover;}

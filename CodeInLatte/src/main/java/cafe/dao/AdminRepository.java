@@ -162,12 +162,12 @@ public class AdminRepository extends JDBConnection {
 		return coupon;
 	}
 	
-	public int productOrder(String userTel, String orderName, String orderCnt, String order_price) {
+	public int productOrder(String userTel, String orderName, String orderCnt, String order_price, String order_number) {
 		int result = 0;
 		
 		String sql = " INSERT INTO "
-				   + " `order`( user_tel, order_name, order_cnt, order_price ) "
-				   + " VALUES ( ?, ?, ?, ? ) ";
+				   + " `order`( user_tel, order_name, order_cnt, order_price, order_number ) "
+				   + " VALUES ( ?, ?, ?, ?, ? ) ";
 		
 		int no = 1;
 		
@@ -177,6 +177,7 @@ public class AdminRepository extends JDBConnection {
 			psmt.setString(no++, orderName);
 			psmt.setString(no++, orderCnt);
 			psmt.setString(no++, order_price);
+			psmt.setString(no++, order_number);
 			
 			result = psmt.executeUpdate();
 		} catch (SQLException e) {
@@ -185,5 +186,39 @@ public class AdminRepository extends JDBConnection {
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * 주문번호 처리를 위한 사용자 번호로 조회
+	 * @param orderNo
+	 * @return
+	 */
+	public Admin orderCompleteSelect(String orderNo) {
+		Admin order = new Admin();
+		
+		String sql = " SELECT * FROM `order` "
+				   + " WHERE user_tel = ? ";
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, orderNo);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				order.setOrderNo(rs.getInt("order_no"));
+				order.setUserTel(rs.getString("user_tel"));
+				order.setOrderName(rs.getString("order_name"));
+				order.setOrderCnt(rs.getInt("order_cnt"));
+				order.setOrderPrice(rs.getInt("order_price"));
+				order.setOrderDate(rs.getString("order_date"));
+				order.setOrderNumber(rs.getString("order_number"));
+			}
+		} catch (SQLException e) {
+			System.err.println("상품 조회 시, 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return order;
 	}
 }

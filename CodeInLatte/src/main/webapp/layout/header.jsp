@@ -23,7 +23,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse border-bottom">
-    <a class="navbar-brand px-3" href="#"><img src="" alt="로고" /></a>
+    <a class="navbar-brand px-3" href="<%= root %>/index.jsp"><img src="<%= root %>/static/img/logo.png" alt="로고" class="w-50 h-50" /></a>
       	<div class="collapse navbar-collapse d-flex justify-content-end px-3">
 	      <ul class="navbar-nav">
 	      <%
