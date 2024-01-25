@@ -1,13 +1,11 @@
-<%@page import="org.apache.*"%>
-<%@page import="cafe.dao.CouponRepository"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page import="cafe.dto.Admin" %>
-<%@ page import="cafe.dto.Coupon" %>
-<%@ page import="cafe.dto.User" %>
-<%@ page import="cafe.dto.Product" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@page import="cafe.dto.Coupon"%>
+<%@page import="cafe.dto.User"%>
+<%@page import="cafe.dto.Admin"%>
+<%@page import="cafe.dto.Product"%>
 <jsp:useBean id="couponDAO" class="cafe.dao.CouponRepository"/>
 <jsp:useBean id="userDAO" class="cafe.dao.UserRepository"/>
 <jsp:useBean id="adminDAO" class="cafe.dao.AdminRepository"/>
@@ -16,34 +14,49 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>쿠폰화면</title>
+	<title>사용 완료 쿠폰</title>
 	<jsp:include page="/layout/link.jsp" />
 </head>
-<body>
+<body> 
 	<jsp:include page="/layout/header.jsp" />
 	<% 
 		String root = request.getContextPath();
-	
-		String couponNo = request.getParameter("couponNo");
 		String userId = (String) session.getAttribute("loginId");
-// 		out.print("userId : " + userId + " ");
-// 		out.print("couponNo : " + couponNo + " ");
+		String couponNo = request.getParameter("couponNo");
+		int userNo = userDAO.getUserById(userId).getUserNo();
+// 		String userTel = request.getParameter("usertel");
 		
 		String userTel = userDAO.getUserById(userId).getUserTel();
-// 		out.print("userTel : " + userTel + " ");
-		int userNo = userDAO.getUserById(userId).getUserNo();
-		
 		int stampCount = userDAO.getUserByTel(userTel).getUserStamp();
-				
-		List<Coupon> couponlist = couponDAO.couponCompletelist(userDAO.getUserByTel(userTel).getUserNo());
+		int completedCount = 0;
 		
+		List<Coupon> couponlist = null;
 		Coupon coupon = null;
+		
 		coupon = couponDAO.nonCompleCoupon(userNo, 0);
 		int noncompl = coupon.getCount();
 // 		out.print(noncompl);
 		coupon = couponDAO.nonCompleCoupon(userNo, 1);
 		int compl = coupon.getCount();
 // 		out.print(compl);
+		
+		if(couponNo != null) {
+			couponlist = couponDAO.couponCompletelist(userNo);
+			if(completedCount == 0) {
+				for(int i = 0; i < couponlist.size(); i++){
+					coupon = couponlist.get(i);
+					if(coupon.getCouponCheck() == 0) {
+						completedCount++;
+						int cpn = Integer.parseInt(couponNo);
+						couponDAO.couponUpdate(userNo, cpn, completedCount);
+					}
+				}
+			}
+		} else {
+			couponlist = couponDAO.couponCompletelist(userNo);
+		}
+// 		out.print("aaaaaaaaaa");
+		
 	%>
 		<h3 class="text-center">쿠폰 화면</h3>
 	
@@ -102,28 +115,26 @@
 	</div>
 	
 	<br>
-	<!-- 보유 쿠폰 -->
-	<h3>보유 쿠폰 (<%= noncompl %>)</h3>
+	<!-- 사용 완료 쿠폰 -->
+	<h3>사용 완료 쿠폰 (<%= compl %>)</h3>
 	<hr>
-		
+	
+<!-- 		<form action="coupon_pro.jsp" method="post"> -->
 			<div class="container">
 				<div class="d-flex justify-content-around border-bottom my-3 w-100 text-center"> 
-					<div class="py-3 w-100 bg-dark bg-gradient text-white" name="completedCount"><a href="./coupon.jsp" class="d-block">사용 가능 쿠폰(<%= noncompl %>)</a></div>
-					<div class="py-3 w-100 " name="couponCount"><a href="./coupon_complete.jsp" class="d-block">사용 완료 쿠폰(<%= compl %>)</a></div>
+					<div class="py-3 w-100 " name="completedCount"><a href="./coupon.jsp" class="d-block">사용 가능 쿠폰(<%= noncompl %>)</a></div>
+					<div class="py-3 w-100 bg-dark bg-gradient text-white" name="couponCount"><a href="./coupon_complete.jsp" class="d-block">사용 완료 쿠폰(<%= compl %>)</a></div>
 				</div>
 			</div>
-<!-- 		<form action="coupon_pro.jsp" method="post"> -->
+<!-- 		</form> -->
 	<div class="d-flex">
 	<%
 		for(int i = 0; i < couponlist.size(); i++){
 			coupon = couponlist.get(i);
-			
-			
-			if(coupon.getCouponCheck() == 0) {
-				
-			
-	%>		
-		<div class="coupon_box mx-1">
+			if(coupon.getCouponCheck() == 1) {
+	%>
+	
+	       <<div class="coupon_box mx-1">
 			<div class="coupon_img">
 				<img alt="쿠폰이미지" src="<%= coupon.getCouponImg() %>">
 			</div>
@@ -135,7 +146,7 @@
 				</ul>
 			</div>
 			<div class="coupon_use">
-				<a href="./coupon_complete.jsp?couponNo=<%= coupon.getCouponNo() %>&&usertel=<%= userTel %>" class="btn btn-outline-dark" onclick="return usedCoupon()">사용하기</a>
+				<a href="#" class="btn btn-outline-dark" >사용완료</a>
 			</div>
 		</div>
 	<%
@@ -143,24 +154,17 @@
 		}
 	%>
 	</div>
-<!-- 	</form> -->
-	
 		<div class="d-flex justify-content-center mt-5 mb-5">
 			<a href="javascript: history.back()" class="btn btn-lg btn-secondary mx-3">back</a>
-		</div>
-		
-	<script>
-	// 쿠폰 사용하기
-	function usedCoupon() {
-		if( confirm("쿠폰을 사용하시겠습니까?") ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	</script>
+		</div>	
+
 	<jsp:include page="/layout/footer.jsp" />
 	<jsp:include page="/layout/script.jsp" />
 	
 </body>
 </html>
+
+
+
+
+

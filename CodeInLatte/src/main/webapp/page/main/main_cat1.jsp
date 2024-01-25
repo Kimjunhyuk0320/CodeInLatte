@@ -31,7 +31,7 @@
 			<div class="col-md-6 col-xl-4 col-xxl-3">
 				<div class="card p-3">
 					<!-- 이미지 영역 -->
-					<div class="img-content">
+					<div class="img-content ">
 						<!-- [New] 이미지 썸네일 추가 -->
 						<img alt="이미지" src="<%= root %>/img?id=<%= product.getProductNo() %>" class="w-100 p-2">					
 					</div>
@@ -41,7 +41,7 @@
 						<p><%= product.getProductCat() %></p>
 						<div class="d-flex justify-content-between w-100">
 							<p class="price"><%= product.getProductPrice() %></p>
-							<a href="./product.jsp?id=<%= product.getProductNo() %>" class="btn btn-dark">상세정보</a>
+							<a href="./product.jsp?productNo=<%= product.getProductNo() %>" class="btn btn-dark">상세정보</a>
 						</div>					
 					</div>
 				</div>

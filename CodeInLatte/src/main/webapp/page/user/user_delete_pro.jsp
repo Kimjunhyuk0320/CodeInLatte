@@ -11,7 +11,7 @@
         //세션도 해제
         session.invalidate();
     } else {
-        out.println("회원삭제가 안됐습니다..."); 
-        response.sendRedirect("update.jsp");
+        out.println("회원 삭제가 되지 않았습니다."); 
+        response.sendRedirect("user_update.jsp");
     } 
 %>

@@ -1,11 +1,13 @@
 <!-- 로그인 처리 -->
-<%@page import="shop.dto.User"%>
-<%@page import="shop.dao.UserRepository"%>
+<%@page import="cafe.dto.User"%>
+<%@page import="cafe.dao.UserRepository"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
 	
+	String root = request.getContextPath();
+
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
 	
@@ -24,6 +26,6 @@
 	session.setAttribute("loginId", id);
 	
 	// 로그인 성공 페이지로 이동
-	response.sendRedirect("complete.jsp?msg=0");		
+	response.sendRedirect( root + "/page/user/complete.jsp?msg=0");		
 
 %>

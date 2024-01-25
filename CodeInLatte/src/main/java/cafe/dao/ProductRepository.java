@@ -170,7 +170,7 @@ public class ProductRepository extends JDBConnection{
 		return result;
 	}
 	
-	public int cartAdd(String productNo, String userNo) {
+	public int cartAdd(String productNo, String userNo, String quantity) {
 		int result = 0;
 		
 		String sql = " INSERT INTO cart(user_no, product_no, cart_cnt) "
@@ -182,7 +182,7 @@ public class ProductRepository extends JDBConnection{
 			psmt = con.prepareStatement(sql);
 			psmt.setString(no++, userNo);
 			psmt.setString(no++, productNo);
-			psmt.setInt(no++, 1);
+			psmt.setString(no++, quantity);
 			
 			result = psmt.executeUpdate();
 		} catch (SQLException e) {
@@ -267,4 +267,32 @@ public class ProductRepository extends JDBConnection{
 		return result;
 	}
 	
+	public List<Product> payMents(String userNo) {
+		ArrayList<Product> paymentsList = new ArrayList<Product>();
+		
+		String sql = " SELECT * FROM cart "
+				   + " WHERE user_no = ? ";
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, userNo);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				Product product = new Product();
+				
+				product.setCartNo(rs.getInt("cart_no"));
+				product.setUserNo(rs.getInt("user_no"));
+				product.setProductNo(rs.getInt("product_no"));
+				product.setCartCnt(rs.getInt("cart_cnt"));
+				
+				paymentsList.add(product);
+			}
+		} catch (SQLException e) {
+			System.err.println("결제 진행 시, 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return paymentsList;
+	}
 }

@@ -3,26 +3,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Main</title>
-<!-- bootstrap lib -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-<link href="<%= request.getContextPath() %>/static/css/style.css" rel="stylesheet" />
+   <meta charset="UTF-8">
+   <title>CodeInLatte</title>
+   <jsp:include page="/layout/link.jsp" />
 </head>
-<body>   
-	<% 
-		String root = request.getContextPath(); 
-	%>
-	
-	<div class=" gap-2 d-sm-flex justify-content-sm-center ">
-		<button class="btn btn-primary w-100 py-2 mt-2" type="button" onclick="location.href='./login.jsp'">회원</button>
-		<button class="btn btn-primary w-100 py-2 mt-2" type="button" onclick="location.href='./main.jsp'">비회원</button>
-		<button class="btn btn-primary w-100 py-2 mt-2" type="button" onclick="location.href='./admin_main.jsp'">관리자</button>
-	</div>
+<body>
+<%
+   String root = request.getContextPath();
+%>   
+<%--    <jsp:include page="/layout/header.jsp" />   --%>
+
+    <video autoplay loop muted>
+      <source src = "<%= root %>/static/img/index.webm"type = "video/webm">
+    </video>
+    
+    <div class="main_box">
+    	<div class="main_inner">
+    		<div class="main_img_box">
+    			<img src="<%= root %>/static/img/white_logo.png" alt="로고" />
+    		</div>
+    		<ul class="main_btn_box">
+    			<li><button class="btn btn-outline-light" onclick="location.href='<%= root %>/page/start/login.jsp'">회원</button></li>
+    			<li><button class="btn btn-outline-light" onclick="location.href='<%= root %>/page/main/main_cat1.jsp'">비회원</button></li>
+    			<li><button class="btn btn-outline-light" onclick="location.href='<%= root %>/page/start/admin_login.jsp'">관리자</button></li>
+    		</ul>
+    		<div class="Team_info">
+    			<p><a href="#">Team Information</a></p>
+    		</div>
+    	</div>
+    </div>
+    <jsp:include page="/layout/script.jsp" />
+    <jsp:include page="/layout/footer.jsp" /> 
 </body>
 </html>
-
-
-
 
 

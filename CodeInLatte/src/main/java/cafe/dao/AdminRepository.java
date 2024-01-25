@@ -4,6 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import cafe.dto.Admin;
+import cafe.dto.Order;
+import cafe.dto.User;
+import cafe.dto.Product;
+import cafe.dao.OrderRepository;
+import cafe.dao.UserRepository;
+import cafe.dao.ProductRepository;
+
 
 public class AdminRepository extends JDBConnection {
 
@@ -35,7 +42,7 @@ public class AdminRepository extends JDBConnection {
 	}
 	
 	/**
-	 * 관리자 로그인
+	 * 관리자 로그인 조회
 	 * @param id
 	 * @param PW
 	 * @return
@@ -43,9 +50,9 @@ public class AdminRepository extends JDBConnection {
 	public Admin login(String id, String pw) {
 		
 		String sql = " SELECT * "
-				   + " FROM admin "
-				   + " WHERE user_id = ? "
-				   + "   AND user_pw = ? ";
+				   + " FROM manager "
+				   + " WHERE manager_id = ? "
+				   + "   AND manager_pw = ? ";
 		
 		Admin admin = null;
 		try {
@@ -69,131 +76,68 @@ public class AdminRepository extends JDBConnection {
 		return admin;
 	}
 	
-
+	// ----------------------------------------------------------------------------------
 	/**
-	 * 주문목록 조회
-	 * @param Order
+	 * 상품 주문하기
+	 * @param
 	 * @return
 	 */
-	public Admin orderSelect(String orderNo) {
-		Admin order = new Admin();
-		
-		String sql = " SELECT * FROM order WHERE order_no = ? ";
-		
-		try {
-			psmt = con.prepareStatement(sql);
-			psmt.setString(1, orderNo);
-			rs = psmt.executeQuery();
-			
-			while(rs.next()) {
-				
-				order.setOrderNo(rs.getInt("order_no"));
-				order.setUserTel(rs.getString("user_tel"));
-				order.setOrderName(rs.getString("order_name"));
-				order.setOrderCnt(rs.getInt("order_cnt"));
-				order.setOrderPrice(rs.getInt("order_price"));
-				order.setOrderDate(rs.getString("order_date"));
-			}
-		} catch (SQLException e) {
-			System.err.println("상품 조회 시, 에러 발생");
-			e.printStackTrace();
-		}
-		
-		return order;
-	}
-	
-	/**
-	 * 쿠폰 발행
-	 * @param 
-	 * @return
-	 */
-	public int generate(Admin admin) {
-		
+	public int productOrder(String userTel, String orderName, String orderCnt, String order_price, String order_number) {
 		int result = 0;
-		// [NEW] - file 컬럼 추가
-		String sql = " INSERT INTO coupon (coupon_no, user_no, coupon_name, coupon_date, coupon_img, coupon_check) "
-				   + " VALUES (?, ?, ?, ?, ?, ? ) " ;				
+		
+		String sql = " INSERT INTO "
+				   + " `order`( user_tel, order_name, order_cnt, order_price, order_number ) "
+				   + " VALUES ( ?, ?, ?, ?, ? ) ";
 		
 		int no = 1;
+		
 		try {
 			psmt = con.prepareStatement(sql);
-			psmt.setInt(no++, admin.getCouponNo());
-			psmt.setInt(no++, admin.getUserNo());
-			psmt.setString(no++, admin.getCouponName());
-			psmt.setString(no++, admin.getCouponDate());	
-			psmt.setString(no++, admin.getCouponImg());	
-			psmt.setInt(no++, admin.getCouponCheck());	
+			psmt.setString(no++, userTel);
+			psmt.setString(no++, orderName);
+			psmt.setString(no++, orderCnt);
+			psmt.setString(no++, order_price);
+			psmt.setString(no++, order_number);
 			
 			result = psmt.executeUpdate();
-			
 		} catch (SQLException e) {
-			System.err.println("쿠폰 발행 중, 에러 발생!");
+			System.err.println("상품 주문 중, 에러 발생");
 			e.printStackTrace();
 		}
-		System.out.println("쿠폰 " + result + "개가 발행되었습니다.");
+		
 		return result;
 	}
 	
 	/**
-	 * 쿠폰 목록 조회
-	 * @param CouponNo
+	 * 장바구니 추가
+	 * @param
 	 * @return
 	 */
-
-	public List<Admin> list() {
+	public int cartAdd(String productNo, String userNo) {
+		int result = 0;
 		
-		ArrayList<Admin> couponList = new ArrayList<Admin>();
+		String sql = " INSERT INTO cart(user_no, product_no, cart_cnt) "
+				   + " VALUES ( ?, ?, ? ) ";
 		
-		String sql = " SELECT * FROM coupon ";
-		
-		try {
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
-			
-			while(rs.next()) {
-				Admin coupon = new Admin();
-				coupon.setUserNo(rs.getInt("user_no"));
-				coupon.setCouponNo(rs.getInt("couponNo"));
-				coupon.setCouponName(rs.getString("couponName"));
-				coupon.setCouponDate(rs.getString("couponDate"));
-				coupon.setCouponImg(rs.getString("couponImg"));
-				coupon.setCouponCheck(rs.getInt("couponCheck"));
-				
-				couponList.add(coupon);
-			}
-		} catch (SQLException e) {
-			System.err.println("쿠폰 목록 조회 시, 에러 발생");
-			e.printStackTrace();
-		}
-		return couponList;
-	}
-	
-	
-	public Admin couponSelect(String userNo) {
-		Admin coupon = new Admin();
-		
-		String sql = " SELECT * FROM order WHERE order_no = ? ";
+		int no = 1;
 		
 		try {
 			psmt = con.prepareStatement(sql);
-			psmt.setString(1, userNo);
-			rs = psmt.executeQuery();
+			psmt.setString(no++, userNo);
+			psmt.setString(no++, productNo);
+			psmt.setInt(no++, 1);
 			
-			while(rs.next()) {
-				
-				coupon.setUserNo(rs.getInt("user_no"));
-				coupon.setCouponNo(rs.getInt("couponNo"));
-				coupon.setCouponName(rs.getString("couponName"));
-				coupon.setCouponDate(rs.getString("couponDate"));
-				coupon.setCouponImg(rs.getString("couponImg"));
-				coupon.setCouponCheck(rs.getInt("couponCheck"));
-
-			}
+			result = psmt.executeUpdate();
 		} catch (SQLException e) {
-			System.err.println("쿠폰 목록 조회시, 에러 발생");
+			System.err.println("장바구니 등록 중, 에러 발생");
 			e.printStackTrace();
 		}
 		
-		return coupon;
+		System.out.println("장바구니에" + result + "개가 등록되었습니다.");
+		
+		return result;
 	}
+	
 }
+	
+	
