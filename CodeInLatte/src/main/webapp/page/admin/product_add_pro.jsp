@@ -9,9 +9,9 @@
 <jsp:useBean id="productDAO" class="cafe.dao.ProductRepository" />   
 <%     
 	request.setCharacterEncoding("UTF-8");
-
+	String root = request.getContextPath();
 	// [NEW] - 파일 업로드 추가 
-	String path = "E:\\Server";
+	String path = root+"\\static\\img\\product";
 	
 	DiskFileUpload upload = new DiskFileUpload();  
 	
@@ -58,8 +58,3 @@
 	 
 	response.sendRedirect("admin_main.jsp");			// 상품 목록으로 이동
 %>
-
-
-
-
-

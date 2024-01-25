@@ -1,7 +1,6 @@
 
 <%@page import="cafe.dto.User"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:useBean id="userDAO" class="cafe.dao.UserRepository" />
 <%
 	String id = request.getParameter("id");
@@ -12,17 +11,17 @@
 	String address = request.getParameter("address");
 
     User user = new User();
-    user.setId(id);
+    user.setUserId(id);
 
     if (pw == null || pw =="" ){
-        pw = userDAO.getUserById(id).getPassword();
+        pw = userDAO.getUserById(id).getUserPW();
     }
-    user.setId(id);
-    user.setPassword(pw);
-    user.setName(name);
-    user.setBirth(birth);
-    user.setTel(tel);
-    user.setAddress(address);
+    user.setUserId(id);
+    user.setUserPW(pw);
+    user.setUserName(name);
+    user.setUserBirth(birth);
+    user.setUserTel(tel);
+    user.setUserAddress(address);
 
     int result = userDAO.update(user);
     if (result >0 ){

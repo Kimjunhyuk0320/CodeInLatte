@@ -42,7 +42,7 @@ public class ImgServlet extends HttpServlet {
 		String file = product.getProductImg();	// 파일 경로
 		// 상품 이미지가 없을 때, 기본 이미지로 응답
 				if( file == null || file.equals("") ) {
-					file = "E:\\Server\\defaultcoffee.jpg";
+					file = "I:\\thejoeunAcademy\\JSP\\git\\CodeInLatte\\CodeInLatte\\src\\main\\webapp\\static\\img\\";
 				}
 		String ext = file.substring( file.lastIndexOf(".") + 1 ).toUpperCase();
 		System.out.println("확장자 : " + ext);

@@ -3,14 +3,8 @@ package cafe.dto;
 import java.io.Serializable;
 
 public class Product implements Serializable {
-<<<<<<< HEAD
 	    
 	
-=======
-	
-	
-	private static final long serialVersionUID = 1L;
->>>>>>> refs/remotes/origin/team4
 	
 	private int productNo;
 	private String productName;
@@ -19,7 +13,11 @@ public class Product implements Serializable {
 	private String productCon;
 	private String productImg;
 	private String productRegdate;
-	
+	private int quantity;
+	private int cartNo;
+	private int userNo;
+	private int cartCnt;
+
 	public Product() {
 		
 	}
@@ -80,10 +78,45 @@ public class Product implements Serializable {
 		this.productRegdate = productRegdate;
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getCartNo() {
+		return cartNo;
+	}
+
+	public void setCartNo(int cartNo) {
+		this.cartNo = cartNo;
+	}
+	
+	public int getCartCnt() {
+		return cartCnt;
+	}
+
+	public void setCartCnt(int cartCnt) {
+		this.cartCnt = cartCnt;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [productNo=" + productNo + ", productName=" + productName + ", productCat=" + productCat
 				+ ", productPrice=" + productPrice + ", productCon=" + productCon + ", productImg=" + productImg
-				+ ", productRegdate=" + productRegdate + "]";
+				+ ", productRegdate=" + productRegdate + ", quantity=" + quantity + ", cartNo=" + cartNo + ", cartCnt="
+				+ cartCnt + ", userNo=" + userNo + "]";
 	}
+
+	
 }
